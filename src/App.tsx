@@ -1,8 +1,16 @@
-import { Github, FileVideo, Upload } from "lucide-react";
+import { FileVideo, Github, Upload, Wand2 } from "lucide-react";
 import { Button } from "./components/ui/button";
-import { Separator } from "./components/ui/separator";
-import { Textarea } from "./components/ui/textarea";
 import { Label } from "./components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./components/ui/select";
+import { Separator } from "./components/ui/separator";
+import { Slider } from "./components/ui/slider";
+import { Textarea } from "./components/ui/textarea";
 
 export function App() {
   return (
@@ -46,13 +54,13 @@ export function App() {
         </div>
         <aside className="w-80 space-y-6">
           <form className="space-y-6">
-            <label
+            <Label
               htmlFor="video"
               className="border flex rounded-md aspect-video cursor-pointer border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover: bg-primary/5"
             >
               <FileVideo className="w-4 h-4" />
               Upload video
-            </label>
+            </Label>
             <input
               type="file"
               id="video"
@@ -62,11 +70,11 @@ export function App() {
 
             <Separator />
 
-            <div className="space-y-1">
+            <div className="space-y-2">
               <Label htmlFor="transcription_prompt">Transcription prompt</Label>
               <Textarea
                 id="transcription_prompt"
-                className="min-h-20 leading-relaxed"
+                className="h-20 leading-relaxed resize-none"
                 placeholder="Type video keywords separated by commas ( , )"
               />
             </div>
@@ -74,6 +82,61 @@ export function App() {
             <Button type="submit" className="w-full">
               Upload video
               <Upload className="w-4 h-4 ml-2" />
+            </Button>
+          </form>
+
+          <Separator />
+
+          <form className="space-y-6">
+            <div className="space-y-2">
+              <Label>Prompt</Label>
+
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select option" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="title">Title</SelectItem>
+                  <SelectItem value="description">Description</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Model</Label>
+
+              <Select disabled defaultValue="gpt3.5">
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="gpt3.5">GPT 3.5-turbo 16k</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <span className="block text-xs text-muted-foreground italic">
+                You will be able to change this option soon...
+              </span>
+            </div>
+
+            <Separator />
+
+            <div className="space-y-4">
+              <Label>Temperature</Label>
+
+              <Slider min={0} max={1} step={0.1} />
+
+              <span className="block text-xs text-muted-foreground italic leading-relaxed">
+                Higher values may result in more creative results with more
+                errors.
+              </span>
+            </div>
+
+            <Separator />
+
+            <Button type="submit" className="w-full">
+              Execute
+              <Wand2 className="w-4 h-4 ml-2" />
             </Button>
           </form>
         </aside>
