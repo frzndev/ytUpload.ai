@@ -52,6 +52,7 @@ export function App() {
             your prompt to add transcript content to the selected video.
           </p>
         </div>
+
         <aside className="w-80 space-y-6">
           <form className="space-y-6">
             <Label
