@@ -2,7 +2,7 @@ import { fastifyCors } from '@fastify/cors'
 import { fastify } from 'fastify'
 import {
   createTranscriptionRoute,
-  generateAICompletionRoute,
+  generateAiCompletionRoute,
   getAllPromptsRoute,
   uploadVideoRoute
 } from './routes'
@@ -16,7 +16,7 @@ app.register(fastifyCors, {
 app.register(getAllPromptsRoute)
 app.register(uploadVideoRoute)
 app.register(createTranscriptionRoute)
-app.register(generateAICompletionRoute)
+app.register(generateAiCompletionRoute)
 
 app.listen({
   port: 3333,
